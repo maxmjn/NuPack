@@ -38,7 +38,15 @@ public class MarkUpCalculator
             throw new RuntimeException("Category is Invalid");
         }
 
-        return 0.0;
+        Double newBasePrice = basePrice + basePrice * getMarkupPercent("flat");
+        Double personsCost = newBasePrice * getMarkupPercent("persons") * numPersons;
+        Double categoryCost = newBasePrice * getMarkupPercent(category);
+
+        Double finalCost = newBasePrice + personsCost + categoryCost;
+
+        double formattedFinalCost =  Math.round(finalCost.doubleValue() * 100);
+        formattedFinalCost = formattedFinalCost/100;
+        return formattedFinalCost;
     }
 
     /**
