@@ -16,6 +16,7 @@
  - from terminal ```mvn clean install```
  - pricing-1.0.jar file created in maven's home directory
  ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
+
 #### Usage
  - To include JAR file in your project in your pom.xml add dependency
   ```
@@ -25,7 +26,7 @@
       <version>1.0</version>
   </dependency>
   ```
- 
+
 #### Test
  - Make sure pricing-1.0.jar is available in maven home directory
   ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
