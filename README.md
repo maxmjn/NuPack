@@ -19,13 +19,15 @@
 
 #### Usage
  - To include JAR file in your project in your pom.xml add dependency
-  <pre>
-  <dependency>
-      <groupId>com.nupack</groupId>
-      <artifactId>pricing</artifactId>
-      <version>1.0</version>
-  </dependency>
-  </pre>
+ <pre>
+ <code>
+ &lt;dependency&gt;
+     &lt;groupId&gt;com.nupack&lt;/groupId&gt;
+     &lt;artifactId&gt;pricing&lt;/artifactId&gt;
+     &lt;version&gt;1.0&lt;/version&gt;
+ &lt;/dependency&gt;
+ </code>
+ </pre>
 
 #### Test
  - Make sure pricing-1.0.jar is available in maven home directory
