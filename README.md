@@ -37,11 +37,13 @@
  - src/main/java directory contains the project source code, the src/test/java directory contains the test source, and the pom.xml file is the project's Project Object Model, or POM 
  - To include JAR file in your project in your pom.xml add dependency
  <pre>
- <dependency>
-     <groupId>com.nupack</groupId>
-     <artifactId>pricing</artifactId>
-     <version>1.0</version>
- </dependency>
+ <code>
+ &lt;dependency&gt;
+     &lt;groupId&gt;com.nupack&lt;/groupId&gt;
+     &lt;artifactId&gt;pricing&lt;/artifactId&gt;
+     &lt;version&gt;1.0&lt;/version&gt;
+ &lt;/dependency&gt;
+ </code>
  </pre>
  - In your src/main/java/com/mycompany/app/App.java
  ```Java
