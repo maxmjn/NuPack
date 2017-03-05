@@ -110,4 +110,35 @@ public class MarkUpCalculatorTest
         Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "books" );
         assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
     }
+
+    @Test
+    public final void testGetMarkupPercent_food(){
+        Double expected = 0.13;
+        Double actual = MarkUpCalculator.getMarkupPercent("food");
+        assertEquals("GetMarkupPercent for food failed:", expected, actual);
+    }
+    @Test
+    public final void testGetMarkupPercent_pharmceuticals(){
+        Double expected = 0.075;
+        Double actual = MarkUpCalculator.getMarkupPercent("pharmaceuticals");
+        assertEquals("GetMarkupPercent for pharmceuticals failed:", expected, actual);
+    }
+    @Test
+    public final void testGetMarkupPercent_electronics(){
+        Double expected = 0.02;
+        Double actual = MarkUpCalculator.getMarkupPercent("electronics");
+        assertEquals("GetMarkupPercent for electronics failed:", expected, actual);
+    }
+    @Test
+    public final void testGetMarkupPercent_flat(){
+        Double expected = 0.05;
+        Double actual = MarkUpCalculator.getMarkupPercent("flat");
+        assertEquals("GetMarkupPercent for flat failed:", expected, actual);
+    }
+    @Test
+    public final void testGetMarkupPercent_persons(){
+        Double expected = 0.012;
+        Double actual = MarkUpCalculator.getMarkupPercent("persons");
+        assertEquals("GetMarkupPercent for persons failed:", expected, actual);
+    }
 }

@@ -38,9 +38,29 @@ public class MarkUpCalculator
             throw new RuntimeException("Category is Invalid");
         }
 
-        /**
-         * Get pricing for category
-         */
         return 0.0;
+    }
+
+    /**
+     * Accepts category type and returns markup percent
+     * @param category
+     * @return
+     */
+    protected static Double getMarkupPercent(final String category) {
+
+        if(category.equalsIgnoreCase("food")){
+
+            return categoryMarkUpPercent.get("food");
+        } else if(category.equalsIgnoreCase("drugs")){
+
+            return categoryMarkUpPercent.get("pharmaceuticals");
+        } else if(category.equalsIgnoreCase("tv") || category.equalsIgnoreCase("phone")){
+
+            return categoryMarkUpPercent.get("electronics");
+        } else if(categoryMarkUpPercent.get(category) == null){ //No match found
+            return 0.0;
+        } else {
+            return categoryMarkUpPercent.get(category);
+        }
     }
 }
