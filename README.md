@@ -19,7 +19,7 @@
 
 #### Usage
  - To include JAR file in your project in your pom.xml add dependency
-  ```$xslt
+  ```xml
   <dependency>
       <groupId>com.nupack</groupId>
       <artifactId>pricing</artifactId>
@@ -36,7 +36,7 @@
   ```
  - src/main/java directory contains the project source code, the src/test/java directory contains the test source, and the pom.xml file is the project's Project Object Model, or POM 
  - To include JAR file in your project in your pom.xml add dependency
- ```
+ ```xml
  <dependency>
      <groupId>com.nupack</groupId>
      <artifactId>pricing</artifactId>
