@@ -13,7 +13,8 @@
  - git clone https://github.com/maxmjn/NuPack.git
 
 #### Build JAR
- - from terminal ```mvn clean install```
+ - ```cd NuPack``` 
+ - from terminal ```mvn clean install```<i>Note:pom.xml should be present</i>
  - pricing-1.0.jar file created in maven's home directory
  ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
 
@@ -30,6 +31,7 @@
  </pre>
 
 #### Test
+ - Clone project and build it using maven
  - Make sure pricing-1.0.jar is available in maven home directory
   ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
  - First create a sample project (maven or gradle)
@@ -47,7 +49,7 @@
  &lt;/dependency&gt;
  </code>
  </pre>
- - In your src/main/java/com/mycompany/app/App.java
+ - In your ```src/main/java/com/mycompany/app/App.java```
  ```Java
 import com.nupack.MarkUpCalculator;
 public class App{
@@ -60,7 +62,7 @@ public class App{
     }
 }
 ```
-- In src/test/java/com/mycompany/app/AppTest.java
+- In ```src/test/java/com/mycompany/app/AppTest.java```
 ```Java
 public class AppTest{
     ...
@@ -69,7 +71,7 @@ public class AppTest{
     }
 }
 ```
-- From terminal run ```mvn test``` to see output 
+- From terminal ```cd my-app``` run ```mvn test``` to see output 
 ```
 Running com.mycompany.app.AppTest
 FinalCost:1591.58
