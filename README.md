@@ -19,13 +19,13 @@
 
 #### Usage
  - To include JAR file in your project in your pom.xml add dependency
-  ```xml
+  <pre>
   <dependency>
       <groupId>com.nupack</groupId>
       <artifactId>pricing</artifactId>
       <version>1.0</version>
   </dependency>
-  ```
+  </pre>
 
 #### Test
  - Make sure pricing-1.0.jar is available in maven home directory
@@ -36,13 +36,13 @@
   ```
  - src/main/java directory contains the project source code, the src/test/java directory contains the test source, and the pom.xml file is the project's Project Object Model, or POM 
  - To include JAR file in your project in your pom.xml add dependency
- ```xml
+ <pre>
  <dependency>
      <groupId>com.nupack</groupId>
      <artifactId>pricing</artifactId>
      <version>1.0</version>
  </dependency>
- ```
+ </pre>
  - In your src/main/java/com/mycompany/app/App.java
  ```Java
 import com.nupack.MarkUpCalculator;
