@@ -1,7 +1,7 @@
 # NuPack
 - Final cost calculator library applies markup percent on given base price to output final cost
 - Expected input are BasePrice, Number of Persons, Category
-- Category can be Food,
+- Category values are Food, Electronics, Pharmaceuticals
 
 #### Support
 - dev@nupack.com
@@ -13,10 +13,11 @@
  - git clone https://github.com/maxmjn/NuPack.git
 
 #### Build JAR
- - from terminal mvn clean install
+ - from terminal ```mvn clean install```
  - JAR file created
  
 #### Usage
+ - Include JAR file in your project
  ```Java
 import com.nupack.MarkUpCalculator;
 public class App{

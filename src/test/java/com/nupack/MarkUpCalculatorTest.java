@@ -77,4 +77,37 @@ public class MarkUpCalculatorTest
         } finally {
         }
     }
+
+    @Test
+    public final void testForCategory_Food(){
+        Double expected = 1591.58;
+        Double basePrice = 1299.99;
+        int numPersons = 3;
+        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "food" );
+        assertEquals("FinalCost for Food failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void testForCategory_Pharmaceuticals(){
+        Double  expected = 6199.81;
+        Double basePrice = 5432.00;
+        int numPersons = 1;
+        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "drugs" );
+        assertEquals("FinalCost for Pharmaceuticals failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void testForCategory_Electronics(){
+        Double expected = 13498.35;
+        Double basePrice = 12456.95;
+        int numPersons = 1;
+        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "tv" );
+        assertEquals("FinalCost for Electronics failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void testForCategory_EverythingElse(){
+        Double expected = 13707.63;
+        Double basePrice = 12456.95;
+        int numPersons = 4;
+        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "books" );
+        assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
+    }
 }
