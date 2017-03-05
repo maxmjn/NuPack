@@ -19,7 +19,7 @@
 
 #### Usage
  - To include JAR file in your project in your pom.xml add dependency
-  ```
+  ```$xslt
   <dependency>
       <groupId>com.nupack</groupId>
       <artifactId>pricing</artifactId>
