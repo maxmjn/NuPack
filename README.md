@@ -34,22 +34,8 @@
  - Clone project and build it using maven
  - Make sure pricing-1.0.jar is available in maven home directory
   ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
- - First create a sample project (maven or gradle)
-  ```
-  mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-  ```
- - src/main/java directory contains the project source code, the src/test/java directory contains the test source, and the pom.xml file is the project's Project Object Model, or POM 
- - To include JAR file in your project in your pom.xml add dependency
- <pre>
- <code>
- &lt;dependency&gt;
-     &lt;groupId&gt;com.nupack&lt;/groupId&gt;
-     &lt;artifactId&gt;pricing&lt;/artifactId&gt;
-     &lt;version&gt;1.0&lt;/version&gt;
- &lt;/dependency&gt;
- </code>
- </pre>
- - In your ```src/main/java/com/mycompany/app/App.java```
+ - Create a new folder lets call it ```myfolder```
+ - ```cd myfolder``` Create a file with below contents and save file as ```App.java```
  ```Java
 import com.nupack.MarkUpCalculator;
 public class App{
@@ -62,17 +48,13 @@ public class App{
     }
 }
 ```
-- In ```src/test/java/com/mycompany/app/AppTest.java```
-```Java
-public class AppTest{
-    ...
-    public void testMarkUpCalculator(){
-        App.main(new String[] {});
-    }
-}
+- Copy ```pricing-1.0.jar``` into the same folder as ```App.java```
 ```
-- From terminal ```cd my-app``` run ```mvn test``` to see output 
+myfolder
+|--- App.java
+|--- pricing-1.0.jar
+
 ```
-Running com.mycompany.app.AppTest
-FinalCost:1591.58
-```
+- From terminal navigate to ```myfolder``` that holds ```App.java```
+- Compile ```javac -cp "pricing-1.0.jar" App.java ``` If no errors, you should get ```App.class``` file
+- Run ```java -cp "pricing-1.0.jar": App``` to output ```FinalCost:1591.58```
