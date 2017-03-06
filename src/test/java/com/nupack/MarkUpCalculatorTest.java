@@ -3,7 +3,10 @@ package com.nupack;
 
 import org.junit.*;
 
+import java.io.InputStream;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit test for simple MarkUpCalculator.
@@ -140,5 +143,11 @@ public class MarkUpCalculatorTest
         Double expected = 0.012;
         Double actual = MarkUpCalculator.getMarkupPercent("persons");
         assertEquals("GetMarkupPercent for persons failed:", expected, actual);
+    }
+
+    @Test
+    public final void isFileBeingLoaded(){
+        InputStream inputStream = MarkUpCalculator.loadFile();
+        assertNotNull("File is not found", inputStream);
     }
 }

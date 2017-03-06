@@ -1,5 +1,9 @@
 package com.nupack;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +27,23 @@ public class MarkUpCalculator
         categoryMarkUpPercent.put("electronics", 0.02);
     }
 
+    /**
+     * synchronized to make thread-safe
+     */
+    protected static synchronized InputStream loadFile() {
+
+        InputStream input = null;
+        try {
+            input = new FileInputStream("config.properties");
+        } catch (FileNotFoundException e) {
+
+        } finally {
+
+        }
+
+        return input;
+    }
+
     public static final Double calculateFinalCost(Double basePrice, int numPersons, String category){
 
         /**
@@ -38,14 +59,20 @@ public class MarkUpCalculator
             throw new RuntimeException("Category is Invalid");
         }
 
-        Double newBasePrice = basePrice + basePrice * getMarkupPercent("flat");
-        Double personsCost = newBasePrice * getMarkupPercent("persons") * numPersons;
-        Double categoryCost = newBasePrice * getMarkupPercent(category);
+        double formattedFinalCost = 0;
+        try {
+            Double newBasePrice = basePrice + basePrice * getMarkupPercent("flat");
+            Double personsCost = newBasePrice * getMarkupPercent("persons") * numPersons;
+            Double categoryCost = newBasePrice * getMarkupPercent(category);
 
-        Double finalCost = newBasePrice + personsCost + categoryCost;
+            Double finalCost = newBasePrice + personsCost + categoryCost;
 
-        double formattedFinalCost =  Math.round(finalCost.doubleValue() * 100);
-        formattedFinalCost = formattedFinalCost/100;
+            formattedFinalCost = Math.round(finalCost.doubleValue() * 100);
+            formattedFinalCost = formattedFinalCost/100;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
         return formattedFinalCost;
     }
 
