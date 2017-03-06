@@ -22,6 +22,14 @@ public class MarkUpCalculator
         categoryMarkUpPercent.put("pharmaceuticals", 0.075);
         categoryMarkUpPercent.put("food", 0.13);
         categoryMarkUpPercent.put("electronics", 0.02);
+        initializeMarkUpPercent();
+    }
+
+    /**
+     *
+     */
+    protected static void initializeMarkUpPercent() {
+
     }
 
     /**
@@ -43,6 +51,41 @@ public class MarkUpCalculator
         return input;
     }
 
+    /**
+     *
+     * @param params
+     * @param fileName
+     * @return
+     */
+    public static final Double calculateFinalCost(String params, String fileName){
+
+        return 0.0;
+    }
+
+    /**
+     *
+     * @param params
+     * @return
+     */
+    public static final Double calculateFinalCost(final String params){
+
+        String[] inputArray = params.split(",");
+        if (inputArray == null || inputArray.length != 3 || inputArray.length != 6) {
+            throw new RuntimeException("Usage: basePrice,numPersons,[food|drugs|electronics|*][,flatMarkupPercent,personMarkUpPercent,food|drugs|electronics MarkPercent]");
+        } else {
+            //for array location check data type
+        }
+
+        return 0.0;
+    }
+
+    /**
+     *
+     * @param basePrice
+     * @param numPersons
+     * @param category
+     * @return
+     */
     public static final Double calculateFinalCost(Double basePrice, int numPersons, String category){
 
         /**

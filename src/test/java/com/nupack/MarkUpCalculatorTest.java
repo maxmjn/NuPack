@@ -156,4 +156,23 @@ public class MarkUpCalculatorTest
         InputStream inputStream = MarkUpCalculator.loadFile("config.properties");
         assertNotNull("File is not found", inputStream);
     }
+
+    @Test
+    public final void stringParamLessThan3(){
+        try {
+            MarkUpCalculator.calculateFinalCost("1");
+        } catch (Exception e) {
+            assertEquals("Usage: basePrice,numPersons,[food|drugs|electronics|*][,flatMarkupPercent,personMarkUpPercent,food|drugs|electronics MarkPercent]", e.getMessage());
+        } finally {
+        }
+    }
+    @Test
+    public final void stringParamMoreThan6(){
+        try {
+            MarkUpCalculator.calculateFinalCost("1,2,3,4,5,6,7");
+        } catch (Exception e) {
+            assertEquals("Usage: basePrice,numPersons,[food|drugs|electronics|*][,flatMarkupPercent,personMarkUpPercent,food|drugs|electronics MarkPercent]", e.getMessage());
+        } finally {
+        }
+    }
 }
