@@ -35,7 +35,7 @@
  - Make sure pricing-1.0.jar is available in maven home directory
   ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
  - Create a new folder lets call it ```myfolder```
- - ```cd myfolder``` Create a file with below contents and save file as ```App.java```
+ - ```cd myfolder``` Create a file with below contents and save file as App.java
  ```Java
 import com.nupack.MarkUpCalculator;
 public class App{
