@@ -147,7 +147,13 @@ public class MarkUpCalculatorTest
 
     @Test
     public final void isFileBeingLoaded(){
-        InputStream inputStream = MarkUpCalculator.loadFile();
+
+        InputStream inputStream = MarkUpCalculator.loadFile("");
+        assertNotNull("File is not found", inputStream);
+    }
+    @Test
+    public final void isFileSpecifiedBeingLoaded(){
+        InputStream inputStream = MarkUpCalculator.loadFile("config.properties");
         assertNotNull("File is not found", inputStream);
     }
 }

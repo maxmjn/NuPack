@@ -1,9 +1,6 @@
 package com.nupack;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,12 +27,14 @@ public class MarkUpCalculator
     /**
      * synchronized to make thread-safe
      */
-    protected static synchronized InputStream loadFile() {
+    protected static synchronized InputStream loadFile(String fileName) {
 
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream input = null;
         try {
-            input = new FileInputStream("config.properties");
-        } catch (FileNotFoundException e) {
+//            System.out.println("File path:" + System.getProperty("user.dir"));
+            input = classLoader.getResourceAsStream(fileName);
+        } catch (Exception e) {
 
         } finally {
 
