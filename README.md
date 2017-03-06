@@ -36,7 +36,8 @@
   ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
  - Create a new folder lets call it ```myfolder```
  - ```cd myfolder``` Create a file with below contents and save file as App.java
- ```Java
+ <pre>
+ <code>
 import com.nupack.MarkUpCalculator;
 public class App{
     public static void main(String[] args){
@@ -47,7 +48,9 @@ public class App{
         System.out.println("FinalCost:" + finalCost);
     }
 }
-```
+</code>
+</pre>
+
 - Copy ```pricing-1.0.jar``` into the same folder as ```App.java```
 ```
 myfolder
