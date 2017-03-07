@@ -22,13 +22,12 @@ public class MarkUpCalculator
         categoryMarkUpPercent.put("pharmaceuticals", 0.075);
         categoryMarkUpPercent.put("food", 0.13);
         categoryMarkUpPercent.put("electronics", 0.02);
-        initializeMarkUpPercent();
     }
 
     /**
      *
      */
-    protected static void initializeMarkUpPercent() {
+    protected static void initializeMarkUpPercent(String fileName) {
 
     }
 
@@ -128,7 +127,7 @@ public class MarkUpCalculator
         if(category.equalsIgnoreCase("food")){
 
             return categoryMarkUpPercent.get("food");
-        } else if(category.equalsIgnoreCase("drugs")){
+        } else if(category.equalsIgnoreCase("drugs") || category.equalsIgnoreCase("pharmaceuticals")){
 
             return categoryMarkUpPercent.get("pharmaceuticals");
         } else if(category.equalsIgnoreCase("tv") || category.equalsIgnoreCase("phone")){

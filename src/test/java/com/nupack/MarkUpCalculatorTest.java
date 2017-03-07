@@ -98,6 +98,22 @@ public class MarkUpCalculatorTest
         assertEquals("FinalCost for Pharmaceuticals failed:",expected, finalCost,0);
     }
     @Test
+    public final void testForCategory_PharmaceuticalsOrDrugs(){
+        Double  expected = 6199.81;
+        Double basePrice = 5432.00;
+        int numPersons = 1;
+        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "pharmaceuticals" );
+        assertEquals("FinalCost for PharmaceuticalsOrDrugs failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void testForCategory_caseInsensitivity(){
+        Double  expected = 6199.81;
+        Double basePrice = 5432.00;
+        int numPersons = 1;
+        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "DruGs" );
+        assertEquals("FinalCost for caseInsensitivity failed:",expected, finalCost,0);
+    }
+    @Test
     public final void testForCategory_Electronics(){
         Double expected = 13498.35;
         Double basePrice = 12456.95;
