@@ -4,6 +4,7 @@ package com.nupack;
 import org.junit.*;
 
 import java.io.InputStream;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -162,18 +163,6 @@ public class MarkUpCalculatorTest
     }
 
     @Test
-    public final void isFileBeingLoaded(){
-
-        InputStream inputStream = MarkUpCalculator.loadFile("");
-        assertNotNull("File is not found", inputStream);
-    }
-    @Test
-    public final void isFileSpecifiedBeingLoaded(){
-        InputStream inputStream = MarkUpCalculator.loadFile("config.properties");
-        assertNotNull("File is not found", inputStream);
-    }
-
-    @Test
     public final void stringParamNotEqual3(){
         try {
             MarkUpCalculator.calculateFinalCost("1");
@@ -237,5 +226,33 @@ public class MarkUpCalculatorTest
         Double expected = 13707.63;
         Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95, 4, books" );
         assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
+    }
+
+    @Test
+    public final void isFileBeingLoaded(){
+
+        InputStream inputStream = MarkUpCalculator.loadFile("");
+        assertNotNull("File is not found", inputStream);
+    }
+    @Test
+    public final void isFileSpecifiedBeingLoaded(){
+        InputStream inputStream = MarkUpCalculator.loadFile("markUpPercent.txt");
+        assertNotNull("File is not found", inputStream);
+    }
+    @Test
+    public final void fileContainsNaN(){
+        try {
+            MarkUpCalculator.initializeMarkUpPercent("NaN.properties");
+        } catch (Exception e) {
+            assertEquals("File key values NaN", e.getMessage());
+        } finally {
+        }
+    }
+    @Test
+    public final void isMarkUpPercentLookUpLoadedFromFile(){
+        MarkUpCalculator.initializeMarkUpPercent("markUpPercent.txt");
+        Map<String, Double> categoryMarkUpPercent = MarkUpCalculator.getCategoryMarkUpPercent();
+        assertEquals("Key Not matching", true, categoryMarkUpPercent.containsKey("flat"));
+        assertEquals("Value Not matching", 0.05, (Double) categoryMarkUpPercent.get("flat"), 0);
     }
 }

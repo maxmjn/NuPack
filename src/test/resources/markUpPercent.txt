@@ -1,0 +1,5 @@
+flat=0.05
+persons=0.012
+pharmaceuticals=0.075
+food=0.13
+electronics=0.02

@@ -41,10 +41,7 @@
 import com.nupack.MarkUpCalculator;
 public class App{
     public static void main(String[] args){
-        Double expected = 1591.58;
-        Double basePrice = 1299.99;
-        int numPersons = 3;
-        Double finalCost = MarkUpCalculator.calculateFinalCost(basePrice, numPersons, "food" );
+        Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" );
         System.out.println("FinalCost:" + finalCost);
     }
 }
@@ -61,3 +58,21 @@ myfolder
 - From terminal navigate to ```myfolder``` that holds ```App.java```
 - Compile ```javac -cp "pricing-1.0.jar" App.java ``` If no errors, you should get ```App.class``` file
 - Run ```java -cp "pricing-1.0.jar": App``` to output ```FinalCost:1591.58```
+- Optionally you can provide your own MarkUp percent file. File name is your choice.
+- File contents should be key-value pair. Key is String, Value is numeric
+```
+flat=0.05
+persons=0.012
+pharmaceuticals=0.075
+food=0.13
+electronics=0.02
+```
+- Place file in same folder as JAR
+```
+myfolder
+|--- App.java
+|--- pricing-1.0.jar
+|--- markup.txt
+
+```
+- Finally compile and run ```java -cp "pricing-1.0.jar": App``` 

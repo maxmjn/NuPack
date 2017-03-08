@@ -1,8 +1,10 @@
 package com.nupack;
 
 import java.io.*;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Calculate final cost by adding appropriate markup prices to provided based price
@@ -12,6 +14,14 @@ public class MarkUpCalculator
 {
 
     private static Map<String, Double> categoryMarkUpPercent = new HashMap<String, Double>();
+
+    public static Map<String, Double> getCategoryMarkUpPercent() {
+        return categoryMarkUpPercent;
+    }
+
+    public static void setCategoryMarkUpPercent(Map<String, Double> categoryMarkUpPercent) {
+        MarkUpCalculator.categoryMarkUpPercent = categoryMarkUpPercent;
+    }
 
     /**
      * Initialize Map with Category pricing logic
@@ -29,6 +39,39 @@ public class MarkUpCalculator
      */
     protected static void initializeMarkUpPercent(String fileName) {
 
+        Properties prop = new Properties();
+        InputStream input = null;
+
+        try {
+
+            input = loadFile(fileName);
+
+            // load a properties file
+            prop.load(input);
+
+            Enumeration<String> keys = (Enumeration<String>) prop.propertyNames();
+            // get the property value to initialze
+            while (keys.hasMoreElements()) {
+                String key = keys.nextElement();
+                Double value = null;
+                try {
+                    value = Double.valueOf(prop.getProperty(key));
+                    categoryMarkUpPercent.put(key, value);
+                } catch (NumberFormatException e) {
+                    throw new RuntimeException("File key values NaN");
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /**
@@ -82,6 +125,10 @@ public class MarkUpCalculator
         } else {
 
 //            parseInputParams(inputArray);
+//            basePrice = Double.valueOf(inputArray[0].trim());
+//            numPersons = Integer.valueOf(inputArray[1].trim());
+//            category = inputArray[2].trim();
+
             //for array location check data type numPersons should be +ve integer, category should be string
             for (int i = 0; i < inputArray.length; i++) {
                 if(inputArray[i] != null){
