@@ -174,21 +174,40 @@ public class MarkUpCalculatorTest
     }
 
     @Test
-    public final void stringParamLessThan3(){
+    public final void stringParamNotEqual3(){
         try {
             MarkUpCalculator.calculateFinalCost("1");
         } catch (Exception e) {
-            assertEquals("Usage: basePrice,numPersons,[food|drugs|electronics|*][,flatMarkupPercent,personMarkUpPercent,food|drugs|electronics MarkPercent]", e.getMessage());
+            assertEquals("Usage: basePrice,numPersons,food|drugs|electronics", e.getMessage());
         } finally {
         }
     }
     @Test
-    public final void stringParamMoreThan6(){
+    public final void stringParamInvalidBasePrice(){
         try {
-            MarkUpCalculator.calculateFinalCost("1,2,3,4,5,6,7");
+            MarkUpCalculator.calculateFinalCost("-1,0, ");
         } catch (Exception e) {
-            assertEquals("Usage: basePrice,numPersons,[food|drugs|electronics|*][,flatMarkupPercent,personMarkUpPercent,food|drugs|electronics MarkPercent]", e.getMessage());
+            assertEquals("BasePrice can't be <= 0", e.getMessage());
         } finally {
         }
     }
+    @Test
+    public final void stringParamInvalidNumPersons(){
+        try {
+            MarkUpCalculator.calculateFinalCost("1,0, ");
+        } catch (Exception e) {
+            assertEquals("NumPersons can't be <= 0", e.getMessage());
+        } finally {
+        }
+    }
+    @Test
+    public final void stringParamInvalidCategory(){
+        try {
+            MarkUpCalculator.calculateFinalCost("1,1, ");
+        } catch (Exception e) {
+            assertEquals("Category can't be empty", e.getMessage());
+        } finally {
+        }
+    }
+
 }

@@ -58,6 +58,10 @@ public class MarkUpCalculator
      */
     public static final Double calculateFinalCost(String params, String fileName){
 
+        //read file
+        //built map - ensure keys match - if not discard file and use default
+        //then call overloaded method
+
         return 0.0;
     }
 
@@ -69,10 +73,48 @@ public class MarkUpCalculator
     public static final Double calculateFinalCost(final String params){
 
         String[] inputArray = params.split(",");
-        if (inputArray == null || inputArray.length != 3 || inputArray.length != 6) {
-            throw new RuntimeException("Usage: basePrice,numPersons,[food|drugs|electronics|*][,flatMarkupPercent,personMarkUpPercent,food|drugs|electronics MarkPercent]");
+        Double basePrice;
+        Integer numPersons;
+        String category;
+
+        if (inputArray == null || inputArray.length != 3) {
+            throw new RuntimeException("Usage: basePrice,numPersons,food|drugs|electronics");
         } else {
-            //for array location check data type
+            //for array location check data type numPersons should be +ve integer, category should be string
+            for (int i = 0; i < inputArray.length; i++) {
+                if(inputArray[i] != null){
+                    switch (i){
+                        case 0:
+                            try {
+                                basePrice = Double.valueOf(inputArray[i].trim());
+                                if(basePrice <=0){
+                                    throw new RuntimeException("BasePrice can't be <= 0");
+                                }
+                            } catch (NumberFormatException e) {
+                                throw new RuntimeException("BasePrice is NaN");
+                            }
+                            break;
+                        case 1:
+                            try {
+                                numPersons = Integer.valueOf(inputArray[i].trim());
+                                if(numPersons <=0){
+                                    throw new RuntimeException("NumPersons can't be <= 0");
+                                }
+                            } catch (NumberFormatException e) {
+                                throw new RuntimeException("NumPersons is NaN");
+                            }
+                            break;
+                        case 2:
+                            category = inputArray[i].trim();
+                            if(category == null || category.length() == 0){
+                                throw new RuntimeException("Category can't be empty");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
 
         return 0.0;
