@@ -1,7 +1,5 @@
 # NuPack
 - Final cost calculator library applies markup percent on given base price to output final cost
-- Expected input are BasePrice, Number of Persons, Category
-- Category values are Food, Electronics, Pharmaceuticals
 
 #### Support
 - dev@nupack.com
@@ -19,6 +17,12 @@
  ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
 
 #### Usage
+ - Expected input are BasePrice, Number of Persons, Category
+ - Category values are Food, Electronics, Pharmaceuticals
+ ```
+ MarkUpCalculator.calculateFinalCost(1299.99,3,"food")
+ MarkUpCalculator.calculateFinalCost("1299.99,3,food"[, filename])
+ ```
  - To include JAR file in your project in your pom.xml add dependency
  <pre>
  <code>
