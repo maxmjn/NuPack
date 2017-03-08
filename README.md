@@ -19,10 +19,13 @@
 #### Usage
  - Expected input are BasePrice, Number of Persons, Category
  - Category values are Food, Electronics, Pharmaceuticals
- ```
+  <pre>
+  <code>
  MarkUpCalculator.calculateFinalCost(1299.99,3,"food")
  MarkUpCalculator.calculateFinalCost("1299.99,3,food"[, filename])
- ```
+  </pre>
+  </code>
+  
  - To include JAR file in your project in your pom.xml add dependency
  <pre>
  <code>
