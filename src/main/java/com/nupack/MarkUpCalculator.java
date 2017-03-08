@@ -73,13 +73,15 @@ public class MarkUpCalculator
     public static final Double calculateFinalCost(final String params){
 
         String[] inputArray = params.split(",");
-        Double basePrice;
-        Integer numPersons;
-        String category;
+        Double basePrice = 0.0;
+        Integer numPersons = 0;
+        String category = "";
 
         if (inputArray == null || inputArray.length != 3) {
             throw new RuntimeException("Usage: basePrice,numPersons,food|drugs|electronics");
         } else {
+
+//            parseInputParams(inputArray);
             //for array location check data type numPersons should be +ve integer, category should be string
             for (int i = 0; i < inputArray.length; i++) {
                 if(inputArray[i] != null){
@@ -115,10 +117,55 @@ public class MarkUpCalculator
                     }
                 }
             }
+            return calculateFinalCost(basePrice, numPersons, category);
         }
-
-        return 0.0;
     }
+
+    /**
+     *
+     * @param inputArray
+     */
+//    protected static void parseInputParams(String[] inputArray) {
+//        Double basePrice = 0.0;
+//        Integer numPersons = 0;
+//        String category = "";
+//
+//        //for array location check data type numPersons should be +ve integer, category should be string
+//        for (int i = 0; i < inputArray.length; i++) {
+//            if(inputArray[i] != null){
+//                switch (i){
+//                    case 0:
+//                        try {
+//                            basePrice = Double.valueOf(inputArray[i].trim());
+//                            if(basePrice <=0){
+//                                throw new RuntimeException("BasePrice can't be <= 0");
+//                            }
+//                        } catch (NumberFormatException e) {
+//                            throw new RuntimeException("BasePrice is NaN");
+//                        }
+//                        break;
+//                    case 1:
+//                        try {
+//                            numPersons = Integer.valueOf(inputArray[i].trim());
+//                            if(numPersons <=0){
+//                                throw new RuntimeException("NumPersons can't be <= 0");
+//                            }
+//                        } catch (NumberFormatException e) {
+//                            throw new RuntimeException("NumPersons is NaN");
+//                        }
+//                        break;
+//                    case 2:
+//                        category = inputArray[i].trim();
+//                        if(category == null || category.length() == 0){
+//                            throw new RuntimeException("Category can't be empty");
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        }
+//    }
 
     /**
      *
@@ -172,7 +219,8 @@ public class MarkUpCalculator
         } else if(category.equalsIgnoreCase("drugs") || category.equalsIgnoreCase("pharmaceuticals")){
 
             return categoryMarkUpPercent.get("pharmaceuticals");
-        } else if(category.equalsIgnoreCase("tv") || category.equalsIgnoreCase("phone")){
+        } else if(category.equalsIgnoreCase("electronics")
+                    || category.equalsIgnoreCase("tv") || category.equalsIgnoreCase("phone")){
 
             return categoryMarkUpPercent.get("electronics");
         } else if(categoryMarkUpPercent.get(category) == null){ //No match found

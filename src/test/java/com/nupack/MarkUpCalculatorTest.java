@@ -209,5 +209,33 @@ public class MarkUpCalculatorTest
         } finally {
         }
     }
-
+    @Test
+    public final void stringParamValid_food(){
+        try {
+            Double expected = 1591.58;
+            Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" );
+            assertEquals("FinalCost for Food failed:",expected, finalCost,0);
+        } catch (Exception e) {
+            assertEquals("Category can't be empty", e.getMessage());
+        } finally {
+        }
+    }
+    @Test
+    public final void stringParamValid_caseInsensitivity(){
+        Double  expected = 6199.81;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("5432.00,1,DruGs" );
+        assertEquals("FinalCost for caseInsensitivity failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void stringParamValid_Electronics(){
+        Double expected = 13498.35;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95,1,Electronics" );
+        assertEquals("FinalCost for Electronics failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void stringParamValid_EverythingElse(){
+        Double expected = 13707.63;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95, 4, books" );
+        assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
+    }
 }
