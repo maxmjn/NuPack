@@ -200,14 +200,9 @@ public class MarkUpCalculatorTest
     }
     @Test
     public final void stringParamValid_food(){
-        try {
-            Double expected = 1591.58;
-            Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" );
-            assertEquals("FinalCost for Food failed:",expected, finalCost,0);
-        } catch (Exception e) {
-            assertEquals("Category can't be empty", e.getMessage());
-        } finally {
-        }
+        Double expected = 1591.58;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" );
+        assertEquals("FinalCost for Food failed:",expected, finalCost,0);
     }
     @Test
     public final void stringParamValid_caseInsensitivity(){
@@ -254,5 +249,29 @@ public class MarkUpCalculatorTest
         Map<String, Double> categoryMarkUpPercent = MarkUpCalculator.getCategoryMarkUpPercent();
         assertEquals("Key Not matching", true, categoryMarkUpPercent.containsKey("flat"));
         assertEquals("Value Not matching", 0.05, (Double) categoryMarkUpPercent.get("flat"), 0);
+    }
+    @Test
+    public final void useFile_food(){
+        Double expected = 1591.58;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" , "markUpPercent.txt");
+        assertEquals("FinalCost for Food failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void useFile_drugs(){
+        Double  expected = 6199.81;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("5432.00,1,DruGs", "markUpPercent.txt" );
+        assertEquals("FinalCost for caseInsensitivity failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void useFile_electronics(){
+        Double expected = 13498.35;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95,1,Electronics","markUpPercent.txt" );
+        assertEquals("FinalCost for Electronics failed:",expected, finalCost,0);
+    }
+    @Test
+    public final void useFile_EverythingElse(){
+        Double expected = 13707.63;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95, 4, books","markUpPercent.txt" );
+        assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
     }
 }

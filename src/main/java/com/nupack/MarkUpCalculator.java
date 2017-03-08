@@ -105,7 +105,8 @@ public class MarkUpCalculator
         //built map - ensure keys match - if not discard file and use default
         //then call overloaded method
 
-        return 0.0;
+        initializeMarkUpPercent(fileName);
+        return calculateFinalCost(params);
     }
 
     /**
