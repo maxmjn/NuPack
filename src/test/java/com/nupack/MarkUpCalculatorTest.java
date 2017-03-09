@@ -274,4 +274,11 @@ public class MarkUpCalculatorTest
         Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95, 4, books","markUpPercent.txt" );
         assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
     }
+
+    @Test
+    public final void useFile_NamedParams(){
+        Double expected = 1591.58;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("bp=1299.99,np=3,category=food" , "markUpPercent.txt");
+        assertEquals("FinalCost for Food failed:",expected, finalCost,0);
+    }
 }
