@@ -10,12 +10,6 @@
  - Maven 3.3.x
  - git clone https://github.com/maxmjn/NuPack.git
 
-#### Build JAR
- - ```cd NuPack``` 
- - from terminal ```mvn clean install```<i>Note:run from folder where pom.xml is present</i>
- - pricing-1.0.jar file created in maven's home directory
- ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
-
 #### Usage
  - Expected input params are BasePrice, Number of Persons, Category
  - Input params can be passed in <strong>any order</strong>
@@ -27,7 +21,7 @@
   MarkUpCalculator.calculateFinalCost("bp=1299.99,np=3,category=food"[, filename])
   </pre>
   </code>
- 
+
  - Default markup percent 
   ```
   flat=0.05
@@ -46,6 +40,12 @@
  &lt;/dependency&gt;
  </code>
  </pre>
+ 
+#### Build
+ - ```cd NuPack``` 
+ - from terminal ```mvn clean install```<i>Note:run from folder where pom.xml is present</i>
+ - pricing-1.0.jar file created in maven's home directory
+ ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
 
 #### Test
  - Clone project
