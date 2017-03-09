@@ -12,7 +12,8 @@ import java.util.Properties;
  */
 public class MarkUpCalculator
 {
-
+    private static final String PARAM_DELIMITER = ",";
+    private static  final String KEYVALUE_DELIMITER = "=";
     private static Map<String, Double> categoryMarkUpPercent = new HashMap<String, Double>();
 
     public static Map<String, Double> getCategoryMarkUpPercent() {
@@ -116,104 +117,57 @@ public class MarkUpCalculator
      */
     public static final Double calculateFinalCost(final String params){
 
-        String[] inputArray = params.split(",");
+        String[] inputArray = params.split(PARAM_DELIMITER);
         Double basePrice = 0.0;
         Integer numPersons = 0;
         String category = "";
 
         if (inputArray == null || inputArray.length != 3) {
-            throw new RuntimeException("Usage: basePrice,numPersons,food|drugs|electronics");
+            throw new RuntimeException("Usage: bp=basePrice,np=numPersons,category=food|drugs|electronics");
         } else {
-
-//            parseInputParams(inputArray);
-//            basePrice = Double.valueOf(inputArray[0].trim());
-//            numPersons = Integer.valueOf(inputArray[1].trim());
-//            category = inputArray[2].trim();
 
             //for array location check data type numPersons should be +ve integer, category should be string
             for (int i = 0; i < inputArray.length; i++) {
                 if(inputArray[i] != null){
-                    switch (i){
-                        case 0:
-                            try {
-                                basePrice = Double.valueOf(inputArray[i].trim());
-                                if(basePrice <=0){
-                                    throw new RuntimeException("BasePrice can't be <= 0");
-                                }
-                            } catch (NumberFormatException e) {
-                                throw new RuntimeException("BasePrice is NaN");
+                    String[] tokens = inputArray[i].split(KEYVALUE_DELIMITER);
+                    if(tokens == null || tokens.length !=2){
+                        throw new RuntimeException("Key=value missing. Usage: bp=basePrice,np=numPersons,category=food|drugs|electronics");
+                    }
+                    String key = tokens[0].trim();
+                    String value = tokens[1].trim();
+                    if(key.equalsIgnoreCase("bp")){
+                        try {
+                            basePrice = Double.valueOf(value);
+                            if(basePrice <=0){
+                                throw new RuntimeException("BasePrice can't be <= 0");
                             }
-                            break;
-                        case 1:
-                            try {
-                                numPersons = Integer.valueOf(inputArray[i].trim());
-                                if(numPersons <=0){
-                                    throw new RuntimeException("NumPersons can't be <= 0");
-                                }
-                            } catch (NumberFormatException e) {
-                                throw new RuntimeException("NumPersons is NaN");
+                        } catch (NumberFormatException e) {
+                            throw new RuntimeException("BasePrice is NaN");
+                        }
+
+                    } else if(key.equalsIgnoreCase("np")){
+                        try {
+                            numPersons = Integer.valueOf(value);
+                            if(numPersons <=0){
+                                throw new RuntimeException("NumPersons can't be <= 0");
                             }
-                            break;
-                        case 2:
-                            category = inputArray[i].trim();
-                            if(category == null || category.length() == 0){
-                                throw new RuntimeException("Category can't be empty");
-                            }
-                            break;
-                        default:
-                            break;
+                        } catch (NumberFormatException e) {
+                            throw new RuntimeException("NumPersons is NaN");
+                        }
+
+                    } else if(key.equalsIgnoreCase("category")){
+                        category = value;
+                        if(value == null || value.length() == 0){
+                            throw new RuntimeException("Category can't be empty");
+                        }
+                    } else {
+
                     }
                 }
             }
             return calculateFinalCost(basePrice, numPersons, category);
         }
     }
-
-    /**
-     *
-     * @param inputArray
-     */
-//    protected static void parseInputParams(String[] inputArray) {
-//        Double basePrice = 0.0;
-//        Integer numPersons = 0;
-//        String category = "";
-//
-//        //for array location check data type numPersons should be +ve integer, category should be string
-//        for (int i = 0; i < inputArray.length; i++) {
-//            if(inputArray[i] != null){
-//                switch (i){
-//                    case 0:
-//                        try {
-//                            basePrice = Double.valueOf(inputArray[i].trim());
-//                            if(basePrice <=0){
-//                                throw new RuntimeException("BasePrice can't be <= 0");
-//                            }
-//                        } catch (NumberFormatException e) {
-//                            throw new RuntimeException("BasePrice is NaN");
-//                        }
-//                        break;
-//                    case 1:
-//                        try {
-//                            numPersons = Integer.valueOf(inputArray[i].trim());
-//                            if(numPersons <=0){
-//                                throw new RuntimeException("NumPersons can't be <= 0");
-//                            }
-//                        } catch (NumberFormatException e) {
-//                            throw new RuntimeException("NumPersons is NaN");
-//                        }
-//                        break;
-//                    case 2:
-//                        category = inputArray[i].trim();
-//                        if(category == null || category.length() == 0){
-//                            throw new RuntimeException("Category can't be empty");
-//                        }
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        }
-//    }
 
     /**
      *

@@ -167,7 +167,7 @@ public class MarkUpCalculatorTest
         try {
             MarkUpCalculator.calculateFinalCost("1");
         } catch (Exception e) {
-            assertEquals("Usage: basePrice,numPersons,food|drugs|electronics", e.getMessage());
+            assertEquals("Usage: bp=basePrice,np=numPersons,category=food|drugs|electronics", e.getMessage());
         } finally {
         }
     }
@@ -176,14 +176,14 @@ public class MarkUpCalculatorTest
         try {
             MarkUpCalculator.calculateFinalCost("-1,0, ");
         } catch (Exception e) {
-            assertEquals("BasePrice can't be <= 0", e.getMessage());
+            assertEquals("Key=value missing. Usage: bp=basePrice,np=numPersons,category=food|drugs|electronics", e.getMessage());
         } finally {
         }
     }
     @Test
     public final void stringParamInvalidNumPersons(){
         try {
-            MarkUpCalculator.calculateFinalCost("1,0, ");
+            MarkUpCalculator.calculateFinalCost("bp=1,np=0, ");
         } catch (Exception e) {
             assertEquals("NumPersons can't be <= 0", e.getMessage());
         } finally {
@@ -192,35 +192,11 @@ public class MarkUpCalculatorTest
     @Test
     public final void stringParamInvalidCategory(){
         try {
-            MarkUpCalculator.calculateFinalCost("1,1, ");
+            MarkUpCalculator.calculateFinalCost("1,1,category='' ");
         } catch (Exception e) {
-            assertEquals("Category can't be empty", e.getMessage());
+            assertEquals("Key=value missing. Usage: bp=basePrice,np=numPersons,category=food|drugs|electronics", e.getMessage());
         } finally {
         }
-    }
-    @Test
-    public final void stringParamValid_food(){
-        Double expected = 1591.58;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" );
-        assertEquals("FinalCost for Food failed:",expected, finalCost,0);
-    }
-    @Test
-    public final void stringParamValid_caseInsensitivity(){
-        Double  expected = 6199.81;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("5432.00,1,DruGs" );
-        assertEquals("FinalCost for caseInsensitivity failed:",expected, finalCost,0);
-    }
-    @Test
-    public final void stringParamValid_Electronics(){
-        Double expected = 13498.35;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95,1,Electronics" );
-        assertEquals("FinalCost for Electronics failed:",expected, finalCost,0);
-    }
-    @Test
-    public final void stringParamValid_EverythingElse(){
-        Double expected = 13707.63;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95, 4, books" );
-        assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
     }
 
     @Test
@@ -253,32 +229,32 @@ public class MarkUpCalculatorTest
     @Test
     public final void useFile_food(){
         Double expected = 1591.58;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("1299.99,3,food" , "markUpPercent.txt");
+        Double finalCost = MarkUpCalculator.calculateFinalCost("bp=1299.99,np=3,category=food" , "markUpPercent.txt");
         assertEquals("FinalCost for Food failed:",expected, finalCost,0);
     }
     @Test
     public final void useFile_drugs(){
         Double  expected = 6199.81;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("5432.00,1,DruGs", "markUpPercent.txt" );
+        Double finalCost = MarkUpCalculator.calculateFinalCost("bp=5432.00,np=1,category=DruGs", "markUpPercent.txt" );
         assertEquals("FinalCost for caseInsensitivity failed:",expected, finalCost,0);
     }
     @Test
     public final void useFile_electronics(){
         Double expected = 13498.35;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95,1,Electronics","markUpPercent.txt" );
+        Double finalCost = MarkUpCalculator.calculateFinalCost("bp=12456.95,np=1,category=Electronics","markUpPercent.txt" );
         assertEquals("FinalCost for Electronics failed:",expected, finalCost,0);
     }
     @Test
     public final void useFile_EverythingElse(){
         Double expected = 13707.63;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("12456.95, 4, books","markUpPercent.txt" );
+        Double finalCost = MarkUpCalculator.calculateFinalCost("bp=12456.95,np =4,category= books","markUpPercent.txt" );
         assertEquals("FinalCost for EverythingElse failed:",expected, finalCost,0);
     }
 
     @Test
     public final void useFile_NamedParams(){
         Double expected = 1591.58;
-        Double finalCost = MarkUpCalculator.calculateFinalCost("bp=1299.99,np=3,category=food" , "markUpPercent.txt");
+        Double finalCost = MarkUpCalculator.calculateFinalCost("category=food,bp=1299.99,np=3" , "markUpPercent.txt");
         assertEquals("FinalCost for Food failed:",expected, finalCost,0);
     }
 }
