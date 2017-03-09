@@ -77,7 +77,7 @@ myfolder
 - Compile ```javac -cp "pricing-1.0.jar" App.java ``` If no errors, you should get ```App.class``` file
 - Run ```java -cp "pricing-1.0.jar": App``` to output ```FinalCost:1591.58```
 - <strong>Optionally</strong> you can provide your own MarkUp percent file. File name and extension is your choice.
-- File contents should be key-value pair. Key is String, Value is numeric
+- File contents should be key-value pair. Key is String, Value is percent/100
 - Example file "markup.txt"
 ```
 flat=0.05
