@@ -85,8 +85,13 @@ public class MarkUpCalculator
         try {
 //            System.out.println("File path:" + System.getProperty("user.dir"));
             input = classLoader.getResourceAsStream(fileName);
+            if(input == null){
+                throw new
+                         RuntimeException("File not found");
+            }
         } catch (Exception e) {
-
+            throw new
+                    RuntimeException("File not found");
         } finally {
 
         }

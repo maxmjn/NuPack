@@ -211,6 +211,14 @@ public class MarkUpCalculatorTest
         assertNotNull("File is not found", inputStream);
     }
     @Test
+    public final void fileNotPresent(){
+        try {
+            MarkUpCalculator.initializeMarkUpPercent("xxx");
+        } catch (Exception e) {
+            assertEquals("File not found", e.getMessage());
+        }
+    }
+    @Test
     public final void fileContainsNaN(){
         try {
             MarkUpCalculator.initializeMarkUpPercent("NaN.properties");

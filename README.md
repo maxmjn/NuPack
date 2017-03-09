@@ -94,4 +94,20 @@ myfolder
 |--- markup.txt
 
 ```
+- App.java <i>Note: Exception is thrown if file is not present or invalid</i>
+```
+Exception in thread "main" java.lang.RuntimeException: File not found
+```
+<pre>
+<code>
+import com.nupack.MarkUpCalculator;
+public class App{
+    public static void main(String[] args){
+        Double expected = 1591.58;
+        Double finalCost = MarkUpCalculator.calculateFinalCost("category=food,bp=1299.99,np=3", "markup.txt" );
+        System.out.println("UsingFile: FinalCost:" + finalCost + ",expected=" + expected);
+    }
+}
+</pre>
+</code>
 - Finally compile and run ```java -cp "pricing-1.0.jar": App``` 
