@@ -22,7 +22,7 @@
   </pre>
   </code>
 
- - Default markup percent 
+ - Default markup percent when no markup percent file is passed
   ```
   flat=0.05
   persons=0.012
