@@ -51,7 +51,9 @@
  - Clone project
  - Build using maven from terminal ```mvn clean install```<i>Note:run from folder where pom.xml is present</i>
  - Make sure pricing-1.0.jar is available in maven home directory
-  ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
+  ```
+  <your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar
+  ```
 ###### Run JAR stand-alone
 - Run JAR from terminal to get finalcost
 ```
