@@ -67,6 +67,7 @@ java -jar pricing-1.0.jar category=food,bp=1299.99,np=3
  ```
 java -jar pricing-1.0.jar category=food,bp=1299.99,np=3 markUpPercent.txt
 ```
+
 ###### Using JAR in your project 
  - Create a new folder lets call it ```myfolder```
  - ```cd myfolder``` Create a file with below contents and save file as App.java
