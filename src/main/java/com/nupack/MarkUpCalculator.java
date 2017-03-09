@@ -35,6 +35,14 @@ public class MarkUpCalculator
         categoryMarkUpPercent.put("electronics", 0.02);
     }
 
+    public static void main(String[] args){
+        if(args.length == 1){
+            System.out.println( calculateFinalCost(args[0]));
+        }
+        if(args.length ==2){
+            System.out.println(calculateFinalCost(args[0], args[1]));
+        }
+    }
     /**
      *
      */
@@ -83,7 +91,8 @@ public class MarkUpCalculator
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream input = null;
         try {
-//            System.out.println("File path:" + System.getProperty("user.dir"));
+            System.out.println("Filename passed in:" + fileName);
+            System.out.println("File path:" + System.getProperty("user.dir"));
             input = classLoader.getResourceAsStream(fileName);
             if(input == null){
                 throw new

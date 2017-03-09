@@ -1,0 +1,2 @@
+Main-Class: com.nupack.MarkUpCalculator
+Specification-Title: "MarkUpCalculator"

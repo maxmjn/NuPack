@@ -52,6 +52,19 @@
  - Build using maven from terminal ```mvn clean install```<i>Note:run from folder where pom.xml is present</i>
  - Make sure pricing-1.0.jar is available in maven home directory
   ```<your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar```
+###### Run JAR stand-alone
+- Run JAR from terminal to get finalcost
+```
+java -jar pricing-1.0.jar category=food,bp=1299.99,np=3
+``` 
+- Run JAR specifying file.
+ <i>Note:File "markUpPercent.txt" is found in project folder "resources".
+    This is file is bundled into JAR when project was built. </i>
+- This method of testing is <u>not flexible</u> because you cannot specify your own file. 
+ ```
+java -jar pricing-1.0.jar category=food,bp=1299.99,np=3 markUpPercent.txt
+```
+###### Using JAR in your project 
  - Create a new folder lets call it ```myfolder```
  - ```cd myfolder``` Create a file with below contents and save file as App.java
  <pre>
