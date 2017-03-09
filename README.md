@@ -54,7 +54,7 @@
   ```
   <your home>/.m2/repository/com/nupack/pricing/1.0/pricing-1.0.jar
   ```
-- 
+
 ###### Run JAR stand-alone
 - Run JAR from terminal to get finalcost
 ```
